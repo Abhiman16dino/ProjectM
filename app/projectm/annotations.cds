@@ -1,0 +1,1 @@
+using DailySalesService as service from '../../srv/daily-sales-service';

@@ -1,0 +1,178 @@
+<mvc:View
+    controllerName="projectm.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <f:SidePanel
+                id="mySidePanel"
+                toggle=".onToggle"
+            >
+                <f:mainContent>
+                    <VBox id="_IDGenVBox">
+                        <HBox
+                            id="_IDGenHBox"
+                            class="sapUiMediumMarginBottom"
+                            width="100%"
+                            binding="{/KPIs('current')}"
+                        >
+                            <GenericTile
+                                id="_IDGenGenericTile1"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                header="Total Profit &amp;  Loss"
+                                press=""
+                            >
+                                <TileContent
+                                    id="_IDGenTileContent"
+                                    unit="INR"
+                                >
+                                    <NumericContent
+                                        id="_IDGenNumericContent"
+                                        truncateValueTo="8"
+                                        value="{totalProfitLoss}"
+                                        valueColor="{= parseFloat(${totalProfitLoss}) >= 0 ? 'Good' : 'Error' }"
+                                        indicator="{= parseFloat(${totalProfitLoss}) >= 0 ? 'Up' : 'Down' }"
+                                        withMargin="false"
+                                    />
+                                </TileContent>
+                            </GenericTile>
+
+                            <GenericTile
+                                id="_IDGenGenericTile2"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                header="Total Sales"
+                                press=""
+                            >
+                                <TileContent
+                                    id="_IDGenTileContent1"
+                                    unit="INR"
+                                >
+                                    <NumericContent
+                                        truncateValueTo="8"
+                                        id="_IDGenNumericContent1"
+                                        value="{totalSales}"
+                                        withMargin="false"
+                                    />
+                                </TileContent>
+                            </GenericTile>
+
+                            <GenericTile
+                                id="_IDGenGenericTile3"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                header="Total Expense"
+                                press=""
+                            >
+                                <TileContent
+                                    id="_IDGenTileContent2"
+                                    unit="INR"
+                                >
+                                    <NumericContent
+                                        id="_IDGenNumericContent2"
+                                        truncateValueTo="8"
+                                        value="{totalExpense}"
+                                        withMargin="false"
+                                    />
+                                </TileContent>
+                            </GenericTile>
+
+                            <GenericTile
+                                id="_IDGenGenericTile4"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                header="Yesterday Profit &amp; Loss"
+                                press=""
+                            >
+                                <TileContent
+                                    id="_IDGenTileContent3"
+                                    unit="INR"
+                                >
+                                    <NumericContent
+                                        id="_IDGenNumericContent3"
+                                        scale="P"
+                                        value="{yesterdayProfitLoss}"
+                                        valueColor="{= parseFloat(${yesterdayProfitLoss}) >= 0 ? 'Good' : 'Error' }"
+                                        indicator="{= parseFloat(${yesterdayProfitLoss}) >= 0 ? 'Up' : 'Down' }"
+                                        withMargin="false"
+                                    />
+                                </TileContent>
+                            </GenericTile>
+                        </HBox>
+
+                        <viz:VizFrame
+                            id="summaryChart"
+                            vizType="line"
+                            width="100%"
+                            height="400px"
+                            xmlns:viz="sap.viz.ui5.controls"
+                        />
+
+                        <HBox id="_IDGenHBox2">
+                            <GenericTile
+                                id="_IDGenGenericTile5"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                header="Daily Sales"
+                                subheader="Check daily sales"
+                                press=".press"
+                                frameType="TwoByHalf"
+                            >
+                                <TileContent id="_IDGenTileContent4" />
+                            </GenericTile>
+
+                            <GenericTile
+                                id="_IDGenGenericTile6"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                header="Daily Expense"
+                                subheader="Check Daily Expense"
+                                press=".onPressExp"
+                                frameType="TwoByHalf"
+                            >
+                                <TileContent id="_IDGenTileContent5" />
+                            </GenericTile>
+                        </HBox>
+                    </VBox>
+                </f:mainContent>
+                <f:items>
+                    <f:SidePanelItem
+                        id="_IDGenSidePanelItem1"
+                        icon="sap-icon://ai"
+                        text="Ask any query"
+                    >
+                        <VBox
+                            id="chatContainer"
+                            height="100%"
+                            class="sapUiSmallMargin"
+                        >
+                            <!-- Response area -->
+                            <List
+                                id="chatMessages"
+                                showSeparators="None"
+                            />
+                            <!-- Input area -->
+                            <HBox
+                                id="chatInputContainer"
+                                width="100%"
+                            >
+                                <Input
+                                    id="chatInput"
+                                    placeholder="Ask your query..."
+                                    width="100%"
+                                />
+
+                                <Button
+                                    id="chatAskButton"
+                                    icon="sap-icon://paper-plane"
+                                    tooltip="Ask"
+                                    press=".onAskChat"
+                                />
+                            </HBox>
+                        </VBox>
+                    </f:SidePanelItem>
+                </f:items>
+            </f:SidePanel>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,23 @@
+{
+  "generationParameters": {
+    "generationDate": "Sat Oct 03 2026 05:57:39 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "Local CAP",
+    "metadataFilename": "",
+    "serviceUrl": "http://localhost:4004/odata/v4/data/",
+    "appName": "projectm",
+    "appTitle": "ProjectM",
+    "appDescription": "ProjectM is a application that handles Mondal Ji's Store data",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.153.0",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": false,
+    "generatorVersion": "1.33.0",
+    "template": "Basic V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/projectm/webapp/index.html"
+  }
+}
