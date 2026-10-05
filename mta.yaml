@@ -20,11 +20,13 @@ modules:
     build-parameters:
       builder: npm-ci
     provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+      - name: srv-api
         properties:
           srv-url: ${default-url}
     requires:
       - name: projectM-backend-db
+      - name: groq-config # <--- Bind the user-provided service here
+      - name: projectM-backend-auth
 
   - name: projectM-backend-db-deployer
     type: hdb
@@ -40,3 +42,20 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+
+  # Declare the existing User-Provided Service
+  - name: groq-config
+    type: org.cloudfoundry.existing-service
+  - name: projectM-backend-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: projectM-backend-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          credential-types:
+            - "binding-secret"
+            - "x509"

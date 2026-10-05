@@ -1,9 +1,17 @@
 import Groq from "groq-sdk";
 import systemPrompt from "./aiPrompt.js";
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 import cds from '@sap/cds';
 export default function () {
     this.on("ask", async (req) => {
+        const groqCredentials = cds.env.requires['groq-config']?.credentials;
+        const apiKey = groqCredentials?.GROQ_API_KEY || process.env.GROQ_API_KEY;
+
+        if (!apiKey) {
+            return req.reject(500, 'Groq API key configuration is missing.');
+        }
+
+        const groq = new Groq({ apiKey });
+
         const question = req.data.question;
         const completion = await groq.chat.completions.create({
             model: "openai/gpt-oss-20b",
